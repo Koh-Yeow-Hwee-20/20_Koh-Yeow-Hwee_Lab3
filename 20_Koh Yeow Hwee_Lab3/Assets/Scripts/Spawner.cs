@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     private float spawndelay=1;
     private int randomInt;
     float positionx;
+    private AudioSource audiosource;
    
 
     
@@ -16,7 +17,8 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+
+        audiosource = GetComponent<AudioSource>();
         InvokeRepeating("spawnobject", spawntime, spawndelay);
 
      
@@ -33,7 +35,7 @@ public class Spawner : MonoBehaviour
     void spawnobject()
     {
        
-        
+        audiosource.Play();
         randomInt = Random.Range(0, spawnee.Length);
         positionx = Random.Range(8f,-8f);
         this.transform.position = new Vector3(positionx,transform.position.y , transform.position.z);

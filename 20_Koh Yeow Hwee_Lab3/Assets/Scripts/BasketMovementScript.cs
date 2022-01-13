@@ -9,8 +9,13 @@ public class BasketMovementScript : MonoBehaviour
     public float speed;
     public float maxX;
 
+    //Score
     public Text scoreText;
     private int scoreNumber;
+
+    //Audio
+    public AudioClip[] audioClips;
+    private AudioSource audioSource;
    
     // Start is called before the first frame update
     void Start()
@@ -18,6 +23,8 @@ public class BasketMovementScript : MonoBehaviour
         //Score system
         scoreNumber = 0;
         scoreText.text = "Score : " + scoreNumber;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,7 +41,7 @@ public class BasketMovementScript : MonoBehaviour
       transform.position = pos;
 
       //Win Scene  
-      if (scoreNumber == 20)
+      if (scoreNumber == 50)
         {
             SceneManager.LoadScene("GamePlay_Level 2");
         }
@@ -51,11 +58,15 @@ public class BasketMovementScript : MonoBehaviour
             scoreNumber += 10;
             Destroy(collision.gameObject);
             scoreText.text = "Score : " + scoreNumber;
+
+            //Audio
+            audioSource.PlayOneShot(audioClips[0]);
         }
 
         //Lose Scene
         else if(collision.gameObject.CompareTag("Unhealthy"))
         {
+            audioSource.PlayOneShot(audioClips[1]);
             SceneManager.LoadScene("LoseScene");
             Destroy(collision.gameObject);
         }
