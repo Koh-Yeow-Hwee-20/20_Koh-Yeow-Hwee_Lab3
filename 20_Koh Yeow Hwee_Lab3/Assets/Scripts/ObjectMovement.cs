@@ -5,6 +5,9 @@ using UnityEngine;
 public class ObjectMovement : MonoBehaviour
 {
     private float ySpeed = -4f;
+
+    //private float currentTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +22,14 @@ public class ObjectMovement : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        /*
+        if (currentTime <= 0)
+        {
+            ySpeed -= 0.1f;
+        }
+        */
     }
+
+
 }

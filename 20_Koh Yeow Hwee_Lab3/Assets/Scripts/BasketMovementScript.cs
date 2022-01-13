@@ -36,7 +36,7 @@ public class BasketMovementScript : MonoBehaviour
       //Win Scene  
       if (scoreNumber == 20)
         {
-            SceneManager.LoadScene("WinScene");
+            SceneManager.LoadScene("GamePlay_Level 2");
         }
     }
 
@@ -52,10 +52,12 @@ public class BasketMovementScript : MonoBehaviour
             Destroy(collision.gameObject);
             scoreText.text = "Score : " + scoreNumber;
         }
+
+        //Lose Scene
         else if(collision.gameObject.CompareTag("Unhealthy"))
         {
             SceneManager.LoadScene("LoseScene");
-            //Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
         }
     }
 
