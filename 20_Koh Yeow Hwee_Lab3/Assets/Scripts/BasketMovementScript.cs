@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BasketMovementScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BasketMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Score system
         scoreNumber = 0;
         scoreText.text = "Score : " + scoreNumber;
     }
@@ -21,7 +23,8 @@ public class BasketMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
+      //Player Movement
       float horizontalInput = Input.GetAxis("Horizontal");
       transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, 0);
 
@@ -29,6 +32,12 @@ public class BasketMovementScript : MonoBehaviour
       Vector2 pos = transform.position;
       pos.x = Mathf.Clamp(pos.x, -maxX, maxX);
       transform.position = pos;
+
+      //Win Scene  
+      if (scoreNumber == 20)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
     }
 
 
@@ -37,6 +46,8 @@ public class BasketMovementScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Healthy"))
         {
+
+            //Score system
             scoreNumber += 10;
             Destroy(collision.gameObject);
             scoreText.text = "Score : " + scoreNumber;
