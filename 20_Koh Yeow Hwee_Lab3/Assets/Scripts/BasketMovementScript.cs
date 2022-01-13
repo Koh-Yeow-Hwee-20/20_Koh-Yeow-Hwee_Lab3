@@ -54,7 +54,8 @@ public class BasketMovementScript : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("Unhealthy"))
         {
-            Destroy(collision.gameObject);
+            SceneManager.LoadScene("LoseScene");
+            //Destroy(collision.gameObject);
         }
     }
 
